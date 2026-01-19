@@ -13,7 +13,15 @@
         android:theme="@style/Theme.Hello">
         <activity
             android:name=".CounterActivity"
-            android:exported="false" />
+            android:label="@string/counter"
+            android:configChanges="orientation|screenSize"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LinearActivity"
             android:exported="false" />

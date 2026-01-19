@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         phone = findViewById(R.id.phoneNumber);
 
-
-
         findViewById(R.id.btnCancel)
                 .setOnClickListener(v -> finish());
         findViewById(R.id.btnSubmit)

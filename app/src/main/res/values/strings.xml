@@ -17,4 +17,6 @@
     <string name="fish">Fish</string>
     <string name="goat">Goat</string>
     <string name="horse">Horse</string>
+    <string name="reset_counter">Reset Counter</string>
+    <string name="counter">Counter</string>
 </resources>
