@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hello">
         <activity
+            android:name=".CounterActivity"
+            android:exported="false" />
+        <activity
             android:name=".LinearActivity"
             android:exported="false" />
         <activity

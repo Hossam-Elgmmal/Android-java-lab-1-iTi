@@ -9,4 +9,12 @@
     <string name="go_back">Go back</string>
     <string name="home">Home</string>
     <string name="next">Next</string>
+    <string name="apple">Apple</string>
+    <string name="bear">Bear</string>
+    <string name="cat">Cat</string>
+    <string name="dog">Dog</string>
+    <string name="elephant">Elephant</string>
+    <string name="fish">Fish</string>
+    <string name="goat">Goat</string>
+    <string name="horse">Horse</string>
 </resources>
