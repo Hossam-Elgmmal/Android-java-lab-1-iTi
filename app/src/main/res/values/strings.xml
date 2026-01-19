@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Hello</string>
-    <string name="hello_android">Hello, Android!</string>
+    <string name="sign_up">Sign up</string>
+    <string name="submit">Submit</string>
+    <string name="username">Username</string>
+    <string name="your_journey_starts_here">Your journey starts here</string>
+    <string name="phone_number">Phone number</string>
+    <string name="cancel">Cancel</string>
 </resources>
