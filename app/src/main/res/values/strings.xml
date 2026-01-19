@@ -6,4 +6,7 @@
     <string name="your_journey_starts_here">Your journey starts here</string>
     <string name="phone_number">Phone number</string>
     <string name="cancel">Cancel</string>
+    <string name="go_back">Go back</string>
+    <string name="home">Home</string>
+    <string name="next">Next</string>
 </resources>

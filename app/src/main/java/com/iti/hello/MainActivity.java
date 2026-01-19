@@ -1,6 +1,8 @@
 package com.iti.hello;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
@@ -9,9 +11,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivityX";
+    public static final String NAME_KEY = "username";
+    public static final String PHONE_KEY = "phone";
+
+    private TextInputEditText username;
+    private TextInputEditText phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,45 +32,41 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        username = findViewById(R.id.username);
+        phone = findViewById(R.id.phoneNumber);
+
+
+
         findViewById(R.id.btnCancel)
                 .setOnClickListener(v -> finish());
-        Log.d(TAG, "onCreate: called!");
+        findViewById(R.id.btnSubmit)
+                .setOnClickListener(v -> getDataAndNavigate());
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart: called!");
-    }
+    private void getDataAndNavigate() {
+        Editable name = username.getText();
+        Editable number = phone.getText();
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume: called!");
-    }
+        if (name == null || number == null) {
+            Log.e(TAG, "onCreate: name and number are null");
+            return;
+        }
+        boolean nameIsShort = name.toString().length() < 3;
+        boolean numberIsShort = number.toString().length() < 11;
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause: called!");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop: called!");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: called!");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart: called!");
+        if (nameIsShort) {
+            username.setError("At least 3 letters");
+        }
+        if (numberIsShort) {
+            phone.setError("enter a valid number with 11 digits");
+        }
+        if (!nameIsShort && !numberIsShort) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra(NAME_KEY, name.toString());
+            intent.putExtra(PHONE_KEY, number.toString());
+            startActivity(intent);
+        }
     }
 
 }
