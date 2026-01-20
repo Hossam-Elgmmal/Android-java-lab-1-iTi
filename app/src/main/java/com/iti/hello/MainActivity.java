@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
         boolean numberIsShort = number.toString().length() < 11;
 
         if (nameIsShort) {
-            username.setError("At least 3 letters");
+            username.setError(getString(R.string.at_least_3_letters));
         }
         if (numberIsShort) {
-            phone.setError("enter a valid number with 11 digits");
+            phone.setError(getString(R.string.enter_a_valid_number_with_11_digits));
         }
         if (!nameIsShort && !numberIsShort) {
             Intent intent = new Intent(this, HomeActivity.class);

@@ -19,4 +19,6 @@
     <string name="horse">Horse</string>
     <string name="reset_counter">Reset Counter</string>
     <string name="counter">Counter</string>
+    <string name="at_least_3_letters">At least 3 letters</string>
+    <string name="enter_a_valid_number_with_11_digits">enter a valid number with 11 digits</string>
 </resources>

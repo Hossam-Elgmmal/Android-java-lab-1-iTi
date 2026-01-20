@@ -24,7 +24,6 @@
             app:titleCentered="true"
             app:titleTextColor="#4A1942"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="#4A1942"/>
 
     </com.google.android.material.appbar.AppBarLayout>

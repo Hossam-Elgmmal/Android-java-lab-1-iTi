@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أهلا</string>
+    <string name="sign_up">التسجيل</string>
+    <string name="submit">تأكيد</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="your_journey_starts_here">رحلتك تبدأ من هنا</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="cancel">إلغاء</string>
+    <string name="go_back">رجوع</string>
+    <string name="home">الرئيسية</string>
+    <string name="next">التالي</string>
+    <string name="apple">تفاحة</string>
+    <string name="bear">دب</string>
+    <string name="cat">قطة</string>
+    <string name="dog">كلب</string>
+    <string name="elephant">فيل</string>
+    <string name="fish">سمكة</string>
+    <string name="goat">ماعز</string>
+    <string name="horse">حصان</string>
+    <string name="reset_counter">اعادة الضبط</string>
+    <string name="counter">العداد</string>
+    <string name="at_least_3_letters">على الأقل ٣ أحرف</string>
+    <string name="enter_a_valid_number_with_11_digits">أدخل رقم صحيح مكون من ١١ رقم</string>
+</resources>
