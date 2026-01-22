@@ -1,5 +1,8 @@
 package com.iti.hello;
 
+import static com.iti.hello.Constants.NAME_KEY;
+import static com.iti.hello.Constants.PHONE_KEY;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,10 +17,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivityX";
-    public static final String NAME_KEY = "username";
-    public static final String PHONE_KEY = "phone";
 
     private TextInputEditText username;
     private TextInputEditText phone;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Editable number = phone.getText();
 
         if (name == null || number == null) {
-            Log.e(TAG, "onCreate: name and number are null");
+            Log.e(Constants.TAG, "onCreate: name and number are null");
             return;
         }
         boolean nameIsShort = name.toString().length() < 3;

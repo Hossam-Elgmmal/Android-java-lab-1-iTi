@@ -13,18 +13,18 @@ public class DataBaseAdapter {
         dbHelper = new DataBaseHelper(context);
     }
 
-    public long insertUser(User user) {
+    public void insertUser(User user) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DataBaseHelper.UID, user.getId());
         contentValues.put(DataBaseHelper.USERNAME, user.getUsername());
         contentValues.put(DataBaseHelper.PHONE, user.getPhone());
 
-        return db.insertWithOnConflict(DataBaseHelper.USER_TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE);
+        db.insertWithOnConflict(DataBaseHelper.USER_TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
     public User[] getAllUsers() {
-        User[] Users = null;
+        User[] Users;
         int i = 0;
         Cursor c;
         SQLiteDatabase db = dbHelper.getReadableDatabase();

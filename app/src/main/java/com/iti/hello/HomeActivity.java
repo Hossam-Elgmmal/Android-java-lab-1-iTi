@@ -1,9 +1,7 @@
 package com.iti.hello;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -12,26 +10,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.iti.hello.database.DataBaseAdapter;
+import com.iti.hello.data.SourceFactory;
+import com.iti.hello.data.SourceFactory.SourceType;
+import com.iti.hello.data.UserSource;
 import com.iti.hello.database.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 public class HomeActivity extends AppCompatActivity {
-
-    public static final String TAG = "HomeActivityX";
-
-    public static final String PREFERENCES_NAME = "my_preferences";
-    public static final String INTERNAL_FILE_NAME = "my_file";
-
-    public static final String NAME_KEY = "username";
-    public static final String PHONE_KEY = "phone";
 
     private TextView usernameTextView;
     private TextView phoneTextView;
@@ -47,12 +31,12 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
-        String name = getIntent().getStringExtra(NAME_KEY);
-        String number = getIntent().getStringExtra(PHONE_KEY);
+        String name = getIntent().getStringExtra(Constants.NAME_KEY);
+        String number = getIntent().getStringExtra(Constants.PHONE_KEY);
 
         if (savedInstanceState != null) {
-            name = savedInstanceState.getString(NAME_KEY);
-            number = savedInstanceState.getString(PHONE_KEY);
+            name = savedInstanceState.getString(Constants.NAME_KEY);
+            number = savedInstanceState.getString(Constants.PHONE_KEY);
         }
 
         usernameTextView = findViewById(R.id.username);
@@ -91,78 +75,46 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(NAME_KEY, usernameTextView.getText().toString());
-        outState.putString(PHONE_KEY, phoneTextView.getText().toString());
+        outState.putString(Constants.NAME_KEY, usernameTextView.getText().toString());
+        outState.putString(Constants.PHONE_KEY, phoneTextView.getText().toString());
     }
 
     private void addToSharedPreferences() {
         String name = usernameTextView.getText().toString();
         String number = phoneTextView.getText().toString();
-        SharedPreferences sharedPrefs = getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putString(NAME_KEY, name);
-        editor.putString(PHONE_KEY, number);
-        editor.apply();
+        UserSource source = SourceFactory.getDataSource(this, SourceType.SHARED_PREFERENCES);
+        source.saveUser(new User(1, name, number));
         usernameTextView.setText("");
         phoneTextView.setText("");
     }
 
     private void getFromSharedPreferences() {
-        SharedPreferences sharedPrefs = getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
-        String name = sharedPrefs.getString(NAME_KEY, "");
-        String number = sharedPrefs.getString(PHONE_KEY, "");
-        usernameTextView.setText(name);
-        phoneTextView.setText(number);
+        UserSource source = SourceFactory.getDataSource(this, SourceType.SHARED_PREFERENCES);
+        User user = source.getUser();
+
+        if (user != null) {
+            usernameTextView.setText(user.getUsername());
+            phoneTextView.setText(user.getPhone());
+        }
     }
 
     private void addToInternalMemory() {
         String name = usernameTextView.getText().toString();
         String number = phoneTextView.getText().toString();
+        UserSource source = SourceFactory.getDataSource(this, SourceType.INTERNAL_MEMORY);
+        source.saveUser(new User(1, name, number));
 
-        JSONObject jsonObject = new JSONObject();
-
-        try {
-            jsonObject.put(NAME_KEY, name);
-            jsonObject.put(PHONE_KEY, number);
-        } catch (JSONException e) {
-            Log.e(TAG, "addToInternalMemory: unable to make json", e);
-            return;
-        }
-        try (FileOutputStream output = openFileOutput(INTERNAL_FILE_NAME, MODE_PRIVATE)) {
-
-            output.write(jsonObject.toString().getBytes());
-
-        } catch (IOException e) {
-            Log.e(TAG, "addToInternalMemory: unable to write to file", e);
-            return;
-        }
         usernameTextView.setText("");
         phoneTextView.setText("");
     }
 
     private void getFromInternalMemory() {
-        try (FileInputStream input = openFileInput(INTERNAL_FILE_NAME)) {
+        UserSource source = SourceFactory.getDataSource(this, SourceType.INTERNAL_MEMORY);
+        User user = source.getUser();
 
-            int length = input.available();
-            byte[] bytes = new byte[length];
-            input.read(bytes);
-
-            String json = new String(bytes);
-
-            JSONObject jsonObject = new JSONObject(json);
-
-            String name = jsonObject.getString(NAME_KEY);
-            String number = jsonObject.getString(PHONE_KEY);
-
-            usernameTextView.setText(name);
-            phoneTextView.setText(number);
-
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, "getFromInternalMemory: file not found", e);
-        } catch (IOException e) {
-            Log.e(TAG, "getFromInternalMemory: io exception", e);
-        } catch (JSONException e) {
-            Log.e(TAG, "getFromInternalMemory: unable to parse json", e);
+        if (user != null) {
+            usernameTextView.setText(user.getUsername());
+            phoneTextView.setText(user.getPhone());
         }
     }
 
@@ -172,22 +124,20 @@ public class HomeActivity extends AppCompatActivity {
 
         User user = new User(1, name, number);
 
-        DataBaseAdapter adapter = new DataBaseAdapter(this);
-        adapter.insertUser(user);
+        UserSource source = SourceFactory.getDataSource(this, SourceType.SQLITE);
+        source.saveUser(user);
 
         usernameTextView.setText("");
         phoneTextView.setText("");
     }
 
     private void getFromSqlite() {
-        DataBaseAdapter adapter = new DataBaseAdapter(this);
-        User[] users = adapter.getAllUsers();
+        UserSource source = SourceFactory.getDataSource(this, SourceType.SQLITE);
+        User user = source.getUser();
 
-        if (users != null && users.length >= 1) {
-            User user = users[0];
+        if (user != null) {
             usernameTextView.setText(user.getUsername());
             phoneTextView.setText(user.getPhone());
         }
-
     }
 }
