@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -49,6 +50,11 @@ public class HomeActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra(NAME_KEY);
         String number = getIntent().getStringExtra(PHONE_KEY);
 
+        if (savedInstanceState != null) {
+            name = savedInstanceState.getString(NAME_KEY);
+            number = savedInstanceState.getString(PHONE_KEY);
+        }
+
         usernameTextView = findViewById(R.id.username);
         phoneTextView = findViewById(R.id.phoneNumber);
 
@@ -80,6 +86,13 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.getFromSqliteBtn)
                 .setOnClickListener(v -> getFromSqlite());
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(NAME_KEY, usernameTextView.getText().toString());
+        outState.putString(PHONE_KEY, phoneTextView.getText().toString());
     }
 
     private void addToSharedPreferences() {
