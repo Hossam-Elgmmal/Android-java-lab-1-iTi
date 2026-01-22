@@ -24,13 +24,7 @@
             android:name=".CounterActivity"
             android:label="@string/counter"
             android:configChanges="orientation|screenSize"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".LinearActivity"
             android:exported="false" />

@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         app:icon="@drawable/ic_arrow_forward"
         app:iconGravity="end"
-        app:iconSize="32dp"
+        app:iconSize="24dp"
         android:layout_margin="20dp"
         app:iconTint="@android:color/white"
         android:background="@drawable/btn_ripple"
@@ -89,9 +89,176 @@
         android:shadowRadius="4"
         android:text="@string/next"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:text="@string/shared_preferences"
+        android:textColor="#2A0D26"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNext" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addToSharedPreferences"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/btn_ripple"
+        android:hapticFeedbackEnabled="true"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:text="@string/add"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toStartOf="@id/getFromSharedPreferences"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/getFromSharedPreferences"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/btn_ripple"
+        android:hapticFeedbackEnabled="true"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:text="@string/get"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addToSharedPreferences"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:text="@string/internal_memory"
+        android:textColor="#2A0D26"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/getFromSharedPreferences" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addToInternalMemory"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/btn_ripple"
+        android:hapticFeedbackEnabled="true"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:text="@string/add"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toStartOf="@id/getFromInternalMemory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/getFromInternalMemory"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/btn_ripple"
+        android:hapticFeedbackEnabled="true"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:text="@string/get"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addToInternalMemory"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:text="@string/sqlite"
+        android:textColor="#2A0D26"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/getFromInternalMemory" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addToSqlite"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/btn_ripple"
+        android:hapticFeedbackEnabled="true"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:text="@string/add"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toStartOf="@id/getFromSqlite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/getFromSqlite"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/btn_ripple"
+        android:hapticFeedbackEnabled="true"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:text="@string/get"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addToSqlite"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
