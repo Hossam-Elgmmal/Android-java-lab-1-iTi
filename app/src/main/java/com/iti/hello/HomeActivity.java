@@ -11,6 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.iti.hello.database.DataBaseAdapter;
+import com.iti.hello.database.User;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.FileInputStream;
@@ -153,12 +157,24 @@ public class HomeActivity extends AppCompatActivity {
         String name = usernameTextView.getText().toString();
         String number = phoneTextView.getText().toString();
 
+        User user = new User(1, name, number);
+
+        DataBaseAdapter adapter = new DataBaseAdapter(this);
+        adapter.insertUser(user);
 
         usernameTextView.setText("");
         phoneTextView.setText("");
     }
 
     private void getFromSqlite() {
+        DataBaseAdapter adapter = new DataBaseAdapter(this);
+        User[] users = adapter.getAllUsers();
+
+        if (users != null && users.length >= 1) {
+            User user = users[0];
+            usernameTextView.setText(user.getUsername());
+            phoneTextView.setText(user.getPhone());
+        }
 
     }
 }
